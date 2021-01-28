@@ -3,11 +3,14 @@
     flex-direction: column;
     align-items: center;
     &__content{
+        //background: rgb(13, 17, 23);
         width: 400px;
-        height: 300px;
-        border: 2px dashed black;
-        border-radius: 5%;
+        height: 250px;
+        border: 1px solid black;
+        border-radius: 10px;
         overflow: hidden;
+        padding: 20px;
+        margin-top: 20px;
     }
     &__upload{
         margin-top: 20px;
@@ -31,60 +34,93 @@
     }
 }
 .loaded{
-    width: 100%;
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    text-align: center; 
+    position: relative;
     &__cancel{
         width: 50px;
         height: 50px;
-        position: relative;
-        bottom: 200px;
-        left: 350px;
+        position: absolute;
+        top: 0px;
+        left: calc(100% - 50px);
         &:hover{
             cursor: pointer;
         }
     }
     &__name{
-        background: darkblue;
-        width: 100%;
-        height: 40px;
-        color: white;
-        font-size: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 0 0 10px 10px;
+        font-size: 40px;
     }
+}
+.waiting-drop{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    border: 2px dashed black;
+    border-radius: 10px;
 }
 .waiting{
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: auto;
+    border: 2px solid transparent;
     &__icon{
-        width: 150px;
-        height: 150px;
-        margin: auto;
-    }
-    &__label{
-        margin:  0 auto;
-        margin-top: 20px;
-        width: 100%;
+        width: 50px;
         height: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        background: blue;
-        color: white;
+        position: relative;
+        top:25%;
+        left: calc(50% - 25px);
+    }
+    &__label1{
+        padding-left: 6px;
+        color: rgb(0, 36, 150);
+        font-size: 26px;
         &:hover{
-            background: lightblue;
-            cursor: pointer;
+            cursor: pointer; 
         }
-        &:active{
-            background: darkblue;
-        }
+    }
+    &__label2{
+        font-size: 26px;
+        color: gray;
+    }
+    &__label3{
+        font-size: 40px;
+        position: relative;
+        top:25%;
+        margin:0 auto;
     }
 }
+.testF{
+    display: flex;
+    position: relative;
+    top:25%;
+    margin: 0 auto;
+
+}
+
+
+// &__label{
+//     margin:  0 auto;
+//     margin-top: 20px;
+//     width: 100%;
+//     height: 50px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     text-align: center;
+//     background: blue;
+//     color: white;
+//     &:hover{
+//         background: lightblue;
+//         cursor: pointer;
+//     }
+//     &:active{
+//         background: darkblue;
+//     }
+// }

@@ -1,9 +1,10 @@
 import "./scss/App.scss";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { Provider } from "react-redux";
+// import store from "./redux/store";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import InputFile from "./components/InputFile/InputFile";
+import Report from "./components/Report/Report";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
             <InputFile />
           </Route>
           <Route path="/report/:id">
+            <Report />
           </Route>
           <Route path="/login" exact></Route>
           <Route path="/register" exact></Route>
-          <Route path="/workspace" exact></Route>
+          <Route path="/workspace" exact></Route>   
         </Switch>
       </div>
     </Router>
