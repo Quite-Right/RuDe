@@ -19,7 +19,7 @@ function InputFileFunc() {
     function onDropHandler(e) {
         e.preventDefault()
         let file = e.dataTransfer.files[0]
-        validateInput(file.name)
+        validateInput(file)
         setDrag(false)
         setUpload(file)
     }
@@ -30,7 +30,10 @@ function InputFileFunc() {
     }
 
     function validateInput (e){
-        if (e.name.split(".")[e.name.split(".").length - 1] !== "txt") {
+
+        let split = e.name.split(".");
+        
+        if (split[split.length - 1] !== "txt") {
             throw Error("wrong file format");
           } else {
             console.log("Success")
@@ -38,6 +41,14 @@ function InputFileFunc() {
           if (e.size > 1024 * 1024 * 10) {
             throw Error("file size is bigger then 10Mb")
           }
+        //   if (e.name.split(".")[e.name.split('.').length - 1] !== "txt") {
+        //     throw Error("wrong file format");
+        //   } else {
+        //     console.log("Success")
+        //   }
+        //   if (e.size > 1024 * 1024 * 10) {
+        //     throw Error("file size is bigger then 10Mb")
+        //   }
     }
     
     return (
@@ -80,7 +91,7 @@ function InputFileFunc() {
                         </div>}
             </div>
             {!upload ? 
-            <input type="file" id="file" name="file" className="display-none" onChange={(e) => { setUpload(e.target.files[0]); validateInput(e.target.files[0].name) }} />
+            <input type="file" id="file" name="file" className="display-none" onChange={(e) => { setUpload(e.target.files[0]); validateInput(e.target.files[0]);  }} />
             : ""}
             <button className="input__upload" onClick={(e) => handleUpload(e)} disabled={upload ? false : true} >Upload</button>
         </div>
