@@ -1,0 +1,33 @@
+.button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  &_primary {
+    background-color: $blue;
+    color: $grey;
+    border: 1px solid $grey;
+    &:hover {
+      background-color: $blue-hover;
+    }
+    &:active {
+      background-color: $blue;
+    }
+  }
+  &_secondary {
+    background-color: $grey;
+    color: $blue;
+    border: 1px solid $blue;
+    &:hover {
+      background-color: $blue-hover-secondary;
+    }
+    &:active {
+      background-color: $grey;
+    }
+  }
+  &:disabled {
+    color: $grey;
+    background-color: $disabled-grey;
+    border: 1px solid $grey;
+  }
+}

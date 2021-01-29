@@ -1,10 +1,17 @@
 @import "./colors.scss";
 
-@import "../components/InputFile/style.scss";
-@import "../components/Report/style.scss";
+@import "../components/style.scss";
+
+.root {
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+}
 
 .app{
     color:black;
+    display: flex;
 }
 .display-none{
     display: none;
@@ -22,4 +29,10 @@ button,
 button:active, 
 button:focus {
     outline: none;
+}
+
+.main {
+  margin-top: 80px;
+  width: 100vw;
+  min-height: calc(100vh - 80px);
 }
