@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Tag from "../Tag/Tag";
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
+import Status from "../Status/Status";
 
 const data = [
   {
