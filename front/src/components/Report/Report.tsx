@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import Tag from "../Tag/Tag";
+import Status from "../Status/Status";
+
 const data = [
     {
         type: "type 1",
@@ -29,8 +30,11 @@ interface IParams{
 
 const Report = () => {
     const {id} = useParams<IParams>();
-    const link:string = "ahref";
-    const link2:string = "ahref222222222222222222222222222222222222222222222222222222222222222222";
+    // const link:string = "ahref";
+    // const link2:string = "ahref222222222222222222222222222222222222222222222222222222222222222222";
+    // const data2 = "12312312"
+    
+    const data3 = ["received", "awaiting", "undergoing", "analyzed", "modified", "deferred", "rejected", "default"]
     return (
         <div className="report">
             <div  className="report__id">Отчет #{id}</div>
@@ -62,6 +66,7 @@ const Report = () => {
                 <Tag>{link2}</Tag>
                 <Tag  type="green" link={link}>{link}</Tag> */}
                 {/* <div onClick={() => console.log(Path)}>Path</div> */}
+                {/* <Status data={data3} /> */}
             </div>
         </div>
     )
