@@ -1,0 +1,14 @@
+.tag{
+    height: 24px;
+    display: block;
+    width: fit-content;
+    max-width: 150px;
+    padding: 3px 7px 3px 5px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: white;
+}

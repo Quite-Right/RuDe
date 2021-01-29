@@ -8,6 +8,7 @@ import AlertTemplate from "./components/AlertTemplate/AlertTemplate";
 import InputFile from "./components/InputFile/InputFile";
 import Report from "./components/Report/Report";
 
+
 // interface optionsType{
 //   position: any,
 //   timeout: number,
