@@ -24,7 +24,6 @@ const data = [
 const Report = () => {
     const location = useLocation();
     let Path = location.pathname.split('report/')[1];
-    //window.location.pathname.split('workspace/')[1];
     if (Path === "") {
         Path = undefined
     }

@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useAlert } from "react-alert";
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
 
-function InputFileFunc() {
+function InputFile() {
     const [upload, setUpload] = useState(undefined);
     const [drag, setDrag] = useState(false);
+    const [hasError, setHasError] = useState(false);
+    const [errorName, setErrorName] = useState("");
+    const alert = useAlert();
 
     function dragStartHandler(e) {
         e.preventDefault()
@@ -25,30 +29,26 @@ function InputFileFunc() {
     }
 
     function handleUpload(e) {
-        console.log(upload)
-        /// PFUHEP[RF]
+        validateInput(upload)
+        if(hasError){
+            alert.error(errorName)
+        } else{
+            console.log(upload)
+        }
     }
 
     function validateInput (e){
-
         let split = e.name.split(".");
-        
         if (split[split.length - 1] !== "txt") {
-            throw Error("wrong file format");
-          } else {
-            console.log("Success")
+            setHasError(true);
+            setErrorName("Wrong file format");
+          } else if (e.size > 1024 * 1024 * 10) {
+            setHasError(true);
+            setErrorName("File size larger than 10Mb");
+          } else{
+            setHasError(false);
+            setErrorName("");
           }
-          if (e.size > 1024 * 1024 * 10) {
-            throw Error("file size is bigger then 10Mb")
-          }
-        //   if (e.name.split(".")[e.name.split('.').length - 1] !== "txt") {
-        //     throw Error("wrong file format");
-        //   } else {
-        //     console.log("Success")
-        //   }
-        //   if (e.size > 1024 * 1024 * 10) {
-        //     throw Error("file size is bigger then 10Mb")
-        //   }
     }
     
     return (
@@ -72,7 +72,7 @@ function InputFileFunc() {
                             onDrop={e => onDropHandler(e)}
                             className="waiting-drop">
                             <Download className="waiting__icon" />
-                            <label className="waiting__label3">Drop to upload</label> 
+                            <label className="waiting__label-main">Drop to upload</label> 
                         </div>
                         //oснoвнoй
                         : 
@@ -82,10 +82,10 @@ function InputFileFunc() {
                             onDragOver={e => dragStartHandler(e)}
                             className="waiting">
                             <Download className="waiting__icon" />
-                            <label className="waiting__label3">Drag file here</label>
-                            <div className="testF"> 
-                                <label className="waiting__label2">Or </label>
-                                <label htmlFor="file" className="waiting__label1"> choose a file</label>
+                            <label className="waiting__label-main">Drag file here</label>
+                            <div className="waiting__sub-text"> 
+                                <label className="waiting__label-sub">Or </label>
+                                <label htmlFor="file" className="waiting__label-link"> choose a file</label>
                             </div>
                             
                         </div>}
@@ -93,9 +93,9 @@ function InputFileFunc() {
             {!upload ? 
             <input type="file" id="file" name="file" className="display-none" onChange={(e) => { setUpload(e.target.files[0]); validateInput(e.target.files[0]);  }} />
             : ""}
-            <button className="input__upload" onClick={(e) => handleUpload(e)} disabled={upload ? false : true} >Upload</button>
+            <button className="input__upload" onClick={(e) => handleUpload(e)} disabled={upload ? false : true}>Upload</button> 
         </div>
     )
 }
 
-export default InputFileFunc
+export default InputFile
