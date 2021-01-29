@@ -7,7 +7,7 @@ function InputFile() {
   const [upload, setUpload] = useState<any | undefined>(undefined);
   const ref = useRef();
   const [drag, setDrag] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  //const [hasError, setHasError] = useState(false);
   const [errorName, setErrorName] = useState("");
   const alert = useAlert();
 
@@ -30,10 +30,8 @@ function InputFile() {
   }
 
   function handleUpload() {
-    validateInput(upload)
-    if (hasError) {
-      // alert.error(errorName)
-    } else {
+    const hasError = validateInput(upload)
+    if (!hasError) {
       console.log(upload)
     }
   }
@@ -41,14 +39,19 @@ function InputFile() {
   function validateInput(e: any) {
     let split = e.name.split(".");
     if (split[split.length - 1] !== "txt") {
-      setHasError(true);
-      setErrorName("Wrong file format");
+      //setErrorName("Wrong file format");
+      alert.error("Wrong file format")
+      //setHasError(true);
+      return true;
     } else if (e.size > 1024 * 1024 * 10) {
-      setHasError(true);
-      setErrorName("File size larger than 10Mb");
+      //setErrorName("File size larger than 10Mb");
+      alert.error("File size larger than 10Mb")
+      //setHasError(true);
+      return true;
     } else {
-      setHasError(false);
-      setErrorName("");
+      // setHasError(false);
+      // setErrorName("");
+      return false;
     }
   }
 
