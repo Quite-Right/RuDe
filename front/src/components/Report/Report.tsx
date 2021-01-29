@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import Tag from "../Tag/Tag";
 const data = [
     {
         type: "type 1",
@@ -28,8 +29,14 @@ interface IParams{
 
 const Report = () => {
     const {id} = useParams<IParams>();
+    const link:string = "ahref";
+    const link2:string = "ahref222222222222222222222222222222222222222222222222222222222222222222";
     return (
         <div className="report">
+            <div  className="report__id">Отчет #{id}</div>
+            <div  className="report__id">Похожие отчеты</div>
+
+
             <table className="report__table">
                 <tr className="report__table__header">
                     <td className="report__table__header__first">Type</td>
@@ -51,6 +58,9 @@ const Report = () => {
             <div className="report__result">
                 <div className="report__result__button unselectable" id="good">No threat detected</div>
                 <div className="report__result__button unselectable" id="bad">Threat detected</div>
+                {/* <Tag  type="green">{link}</Tag>
+                <Tag>{link2}</Tag>
+                <Tag  type="green" link={link}>{link}</Tag> */}
                 {/* <div onClick={() => console.log(Path)}>Path</div> */}
             </div>
         </div>
