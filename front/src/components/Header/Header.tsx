@@ -9,7 +9,7 @@ const Header = (props: Props) => {
   return (
     <header className="header">
       <Link to="/" className="brand">
-        RuDe <span className="brand-app-name">CybersecurityTinder</span>
+        RuDe <span className="brand-app-name">SecurityTinder</span>
       </Link>
     </header>
   )

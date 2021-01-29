@@ -64,3 +64,14 @@
 #bad{
     background: $table-red2;
 }
+
+.table {
+  width: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+.comment-field {
+  max-width: 800px;
+  width: 80%;
+}
