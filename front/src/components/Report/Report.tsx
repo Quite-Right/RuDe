@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import Tag from "../Tag/Tag";
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
+import Button from "../Button/Button";
 import Status from "../Status/Status";
+import { useFormik } from 'formik';
 
 const data = [
   {
@@ -34,30 +36,37 @@ interface IParams {
 
 const Report = () => {
   const { id } = useParams<IParams>();
-  const [comment, setComment] = useState<string>("")
-  const link: string = "ahref";
-  const link2: string = "ahref222222222222222222222222222222222222222222222222222222222222222222";
+  const formik = useFormik({
+    initialValues: {
+      comment: ""
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+  // const [comment, setComment] = useState<string>("")
   return (
     <div className="report">
       <div className="report__id">Отчет #{id}</div>
       <div className="report__id">Похожие отчеты</div>
       <table className="table">
-        <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
-          <div>123</div>
-        </TableRow>
-        <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
-          <div>123</div>
-        </TableRow>
+        <tbody>
+          <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
+            <div>123</div>
+          </TableRow>
+        </tbody>
+
       </table>
-      <TextField className="comment-field" label="Оставить комментарий" value={comment} onChange={(e) => { setComment(e.target.value) }} />
+      <TextField className="comment-field" label="Оставить комментарий" value={formik.values.comment} onChange={formik.handleChange("comment")} />
       <div className="report__result">
-        <div className="report__result__button unselectable" id="good">No threat detected</div>
-        <div className="report__result__button unselectable" id="bad">Threat detected</div>
-        {/* <Tag  type="green">{link}</Tag>
-                <Tag>{link2}</Tag>
-                <Tag  type="green" link={link}>{link}</Tag> */}
-        {/* <div onClick={() => console.log(Path)}>Path</div> */}
+        <Button>No threat detected</Button>
+        <Button>More Work</Button>
+        <Button>Threat detected</Button>
       </div>
+      <Button className="report-submit-btn" type="submit" onClick={() => formik.handleSubmit()}>Отправить отчет</Button>
     </div>
   )
 }
