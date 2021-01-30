@@ -9,17 +9,10 @@ const color: any = {
     awaiting: "yellow",
     undergoing: "orange",
     analyzed: "green",
-    modified: "white",
-    deferred: "gray",
     rejected: "red",
-    default: "lightblue"
+    default: "default"
 }
 
-// color.key = className
-
-// {cve: received, 123:asdasd}
-// const data:Array<string> =["asdasdasda", "asdadasdds"]
-// const newData:string = "asdasdasd"
 const Status = ({data}: any) => {
     if (typeof data === "string") {
         return <Tag type={color[data] ? color[data] : color.default}>{data}</Tag>

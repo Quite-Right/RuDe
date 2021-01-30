@@ -8,6 +8,7 @@ import { positions, Provider, transitions } from "react-alert";
 import AlertTemplate from "./components/AlertTemplate/AlertTemplate";
 import InputFile from "./components/InputFile/InputFile";
 import Report from "./components/Report/Report";
+import Test from "./components/Test/Test";
 
 
 // interface optionsType{
@@ -42,6 +43,7 @@ function App() {
             <Route path="/report/:id">
               <Report />
             </Route>
+            <Route path="/test" exact><Test /></Route>
             <Route path="/login" exact></Route>
             <Route path="/register" exact></Route>
             <Route path="/workspace" exact></Route>

@@ -10,7 +10,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-    color: black;
+    color: white;
     &_blue{
         background: $tag-blue;
     }
@@ -23,16 +23,10 @@
     &_green{
         background: $tag-green;
     }
-    &_white{
-        background: $tag-white;
-    }
-    &_gray{
-        background: $tag-gray;
-    }
     &_red{
         background: $tag-red;
     }
-    &_lightblue{
-        background: $tag-lightblue;
+    &_default{
+        background: $tag-default;
     }
 }
