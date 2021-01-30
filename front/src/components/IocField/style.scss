@@ -1,0 +1,17 @@
+.ioc-field {
+  color: $info-gray;
+  display: flex;
+  &-label {
+    color: $white;
+    display: flex;
+    justify-content: start;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  &-danger-icon {
+    margin-left: 4px;
+    color: $danger-orange;
+    width: 24px;
+    height: 24px;
+  }
+}
