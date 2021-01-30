@@ -54,10 +54,46 @@ const Report = () => {
       <div className="report__id">Похожие отчеты</div>
       <table className="table">
         <tbody>
-          <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
+          <TableRow rowKey={"Name"} tooltip={"https://nvd.nist.gov/vuln"}>
             <div>123</div>
           </TableRow>
           <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"CWE"} tooltip={"https://cwe.mitre.org"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"SOFTWARE"} tooltip={"https://nvd.nist.gov/products/cpe"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"MALWARE"} tooltip={"https://malpedia.caad.fkie.fraunhofer.de/families"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"THREAT_ACTOR"} tooltip={"https://malpedia.caad.fkie.fraunhofer.de/actors"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"INDUSTRY"} tooltip={"https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_oogrswk3onck"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"MITRE_ATTACK"} tooltip={"https://attack.mitre.org"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"COUNTRY"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"CITY"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"TIMESTAMP"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"IOC"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"DOCUMENT"}>
+            <div>123</div>
+          </TableRow>
+          <TableRow rowKey={"RATING"}>
             <div>123</div>
           </TableRow>
         </tbody>
