@@ -38,4 +38,6 @@ button:focus {
   width: 100vw;
   min-height: calc(100vh - 60px);
   background-color: $black;
+  display: flex;
+  justify-content: center;
 }

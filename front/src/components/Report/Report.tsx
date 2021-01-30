@@ -100,21 +100,25 @@ const Report = () => {
 
       </table>
       <TextField className="comment-field" label="Оставить комментарий" value={formik.values.comment} onChange={formik.handleChange("comment")} />
+      <label className="report__result-label">Результат анализа отчета</label>
       <div className="report__result">
         <RadioInput inputId="no-threat"
           name="threatStatus"
-          value="No threat"
-          checked={"No threat" === formik.values.checkStatus}
+          value="resolved"
+          label="Угроз не обнаружено"
+          checked={"resolved" === formik.values.checkStatus}
           onChange={formik.handleChange("checkStatus")} />
         <RadioInput inputId="threat"
           name="threatStatus"
-          value="Threat detected"
-          checked={"Threat detected" === formik.values.checkStatus}
+          value="rejected"
+          label="Обнаружена угроза"
+          checked={"rejected" === formik.values.checkStatus}
           onChange={formik.handleChange("checkStatus")} />
         <RadioInput inputId="need-check"
           name="threatStatus"
-          value="Need Check"
-          checked={"Need Check" === formik.values.checkStatus}
+          value="pending"
+          label="Нужна проверка"
+          checked={"pending" === formik.values.checkStatus}
           onChange={formik.handleChange("checkStatus")} />
       </div>
       <Button className="report-submit-btn" type="submit" onClick={() => formik.handleSubmit()}>Отправить отчет</Button>

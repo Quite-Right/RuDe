@@ -1,6 +1,7 @@
 .report {
   max-width: 1280px;
-  margin: auto;
+  width: 100%;
+  margin: 10px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -15,13 +16,23 @@
 .comment-field {
   max-width: 800px;
   width: 90%;
-  // margin: auto;
   margin-bottom: 24px;
 }
-.report__submit-btn {
+.report-submit-btn {
   max-width: fit-content;
 }
 .report__result {
   display: flex;
+  margin-bottom: 16px;
+  &-label {
+    font-size: 24px;
+    color: $white;
+    margin-bottom: 12px;
+  }
 }
 
+@media screen and (max-width: 800px) {
+  .report__result {
+    flex-direction: column;
+  }
+}

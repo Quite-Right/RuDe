@@ -1,17 +1,8 @@
 import { useState, useRef } from 'react';
 import { useAlert } from "react-alert";
-import styled from 'styled-components';
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
 import Button from "../Button/Button";
-
-// const WhiteDownload = styled(Download)`
-//   color: white;
-// `
-
-// const WhiteClose = styled(Close)`
-//   color: white;
-// `
 
 function InputFile() {
   const [upload, setUpload] = useState<any | undefined>(undefined);
