@@ -1,28 +1,57 @@
 .button {
-  padding: 8px 16px;
-  border-radius: 5px;
+  padding: 8px 16px 9px;
+  border-radius: 4px;
   outline: none;
   border: none;
-  &_primary {
-    background-color: $blue;
-    color: $white;
-    border: 1px solid $white;
+  color: $white;
+  font-size: 20px;
+  &_blue {
+    background-color: aqua;
+    
     &:hover {
-      background-color: $blue-hover;
+      background-color: aqua;
+      color: $white;
     }
     &:active {
-      background-color: $blue;
+      background-color: aqua;
+      color: $white;
     }
   }
-  &_secondary {
-    background-color: $white;
-    color: $blue;
-    border: 1px solid $blue;
+  &_purple {
+    background-color: #553098;
+    color: $white;
     &:hover {
-      background-color: $blue-hover-secondary;
+      background-color:  #6e40c9;
+      color: $white;
     }
     &:active {
-      background-color: $white;
+      background-color: #553098;
+      color: $white;
+    }
+   
+  }
+  &_green {
+    background-color: aqua;
+    color: $white;
+    &:hover {
+      background-color: aqua;
+      color: $white;
+    }
+    &:active {
+      background-color: aqua;
+      color: $white;
+    }
+  }
+  &_red {
+    background-color: aqua;
+    color: $white;
+    &:hover {
+      background-color: aqua;
+      color: $white;
+    }
+    &:active {
+      background-color: aqua;
+      color: $white;
     }
   }
   &:disabled {

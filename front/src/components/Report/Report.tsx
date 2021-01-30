@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useFormik } from 'formik';
+
 import Tag from "../Tag/Tag";
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
 import Button from "../Button/Button";
 import Status from "../Status/Status";
-import { useFormik } from 'formik';
+import RadioInput from "../RadioInput/RadioInput";
 
 const data = [
   {
@@ -38,7 +40,8 @@ const Report = () => {
   const { id } = useParams<IParams>();
   const formik = useFormik({
     initialValues: {
-      comment: ""
+      comment: "",
+      checkStatus: "Need Check"
     },
     onSubmit: (values: any) => {
       alert(JSON.stringify(values, null, 2));
@@ -62,9 +65,21 @@ const Report = () => {
       </table>
       <TextField className="comment-field" label="Оставить комментарий" value={formik.values.comment} onChange={formik.handleChange("comment")} />
       <div className="report__result">
-        <Button>No threat detected</Button>
-        <Button>More Work</Button>
-        <Button>Threat detected</Button>
+        <RadioInput inputId="no-threat"
+          name="threatStatus"
+          value="No threat"
+          checked={"No threat" === formik.values.checkStatus}
+          onChange={formik.handleChange("checkStatus")} />
+        <RadioInput inputId="threat"
+          name="threatStatus"
+          value="Threat detected"
+          checked={"Threat detected" === formik.values.checkStatus}
+          onChange={formik.handleChange("checkStatus")} />
+        <RadioInput inputId="need-check"
+          name="threatStatus"
+          value="Need Check"
+          checked={"Need Check" === formik.values.checkStatus}
+          onChange={formik.handleChange("checkStatus")} />
       </div>
       <Button className="report-submit-btn" type="submit" onClick={() => formik.handleSubmit()}>Отправить отчет</Button>
     </div>

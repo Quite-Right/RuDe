@@ -1,0 +1,19 @@
+.radio-input {
+  display: none;
+  &__circle-icon {
+    color: $white;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__label {
+    color: $white;
+    font-size: 20px;
+    display: flex;
+    height: 32px;
+    justify-content: start;
+    align-items: center;
+  }
+}

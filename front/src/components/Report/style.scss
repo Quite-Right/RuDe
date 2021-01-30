@@ -4,53 +4,6 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  &__table {
-    border: 1px solid $table-border1;
-    border-spacing: 0px;
-    width: 1280px;
-    margin: auto;
-    color: $table-color;
-    &__header {
-      font-weight: bold;
-      background: $table-bg1;
-      &__first {
-        border-bottom: 2px solid $table-border2;
-      }
-      &__second {
-        border-bottom: 2px solid $table-border2;
-      }
-      &__third {
-        border-bottom: 2px solid $table-border2;
-      }
-    }
-
-    &__body {
-      &__first {
-        text-decoration: underline;
-      }
-      &__second {
-      }
-      &__third {
-      }
-    }
-    &__body:nth-child(2n) {
-      background: white;
-    }
-    &__body:nth-child(2n + 1) {
-      background: $table-bg1;
-    }
-  }
-  &__result {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-#good {
-  background: $table-green2;
-}
-#bad {
-  background: $table-red2;
 }
 
 .table {
@@ -62,9 +15,13 @@
 .comment-field {
   max-width: 800px;
   width: 90%;
-  margin: auto;
+  // margin: auto;
   margin-bottom: 24px;
 }
-.report-submit-btn {
+.report__submit-btn {
   max-width: fit-content;
 }
+.report__result {
+  display: flex;
+}
+

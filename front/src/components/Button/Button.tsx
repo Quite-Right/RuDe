@@ -1,19 +1,28 @@
 import React from 'react'
 
-type ButtonFillType = "primary" | "secondary";
-type ButtonType = "button" | "submit" | "reset";
+type ButtonType = "purple";
+type Type = "button" | "submit" | "reset";
 interface Props {
   children: React.ReactNode;
-  fillType?: ButtonFillType;
+  buttonType?: ButtonType;
   disabled?: boolean;
   onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   className?: string;
-  type?: ButtonType;
+  type?: Type;
 }
 
-const Button = ({ children, fillType = "primary", disabled, onClick, className, type="button" }: Props) => {
+const Button = ({ children,
+  disabled,
+  onClick,
+  className,
+  type = "button",
+  buttonType = "purple"
+}: Props) => {
   return (
-    <button onClick={onClick} disabled={disabled} className={`button button_${fillType} ${className ? className : ""}`} type={type}>
+    <button onClick={onClick}
+      disabled={disabled}
+      className={`button button_${buttonType} ${className ? className : ""}`}
+      type={type}>
       {children}
     </button>
   )
