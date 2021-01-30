@@ -3,7 +3,6 @@ import { IocField as Props } from "../../api/index";
 import { Error } from "@styled-icons/boxicons-regular"
 
 const IocField = ({ parametr, info, dangerous }: Props) => {
-  console.log("sdsd d")
   return (
     <div className="ioc-field">
         <span className="ioc-field-label">

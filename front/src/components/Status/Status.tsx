@@ -22,7 +22,7 @@ const Status = ({ data }: Props) => {
   if (Array.isArray(data)) {
     return <>
       {data.map((item, index) =>
-      (<Tag type={color[item.label.toLowerCase()] ? color[item.label.toLowerCase()] : color.default} onClick={item.onClick} link={item.link}>
+      (<Tag key={index} type={color[item.label.toLowerCase()] ? color[item.label.toLowerCase()] : color.default} onClick={item.onClick} link={item.link}>
         {item.label}
       </Tag>))}
     </>

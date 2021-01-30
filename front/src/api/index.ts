@@ -1,48 +1,38 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 const config: AxiosRequestConfig = {
-  baseURL: '/api',
-  // baseURL: '/api',
-  timeout: 2000,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-}
-
-interface IGetReport {
-
-}
-
-interface ICreateReport {
-
-}
-
-interface IAPI {
-  // getReport: (id: string) => Promise<IGetReport>;
-  // /threat/:id' 
-  // createReport: (files: any) => Promis<ICreateReport>
-  // '/upload'
+  baseURL: 'http://91.248.75.251:3001',
+  timeout: 10000,
 }
 
 export const instance: AxiosInstance = axios.create(config);
 
-export const API: IAPI = {
+interface IGetReport {
+  data: Threat;
+}
 
+interface ICreateReport {
+  data: Threat;
+}
+
+interface IAPI {
+  getReport: (id: string) => Promise<IGetReport>;
+  createReport: (formdata: FormData) => Promise<ICreateReport>;
 }
 
 
-instance.interceptors.response.use((response) => {
-  return response;
-}, function (error) {
-  // Do something with response error
-  if (error.response.status === 401) {
-    console.log('unauthorized, logging out ...');
-    // перенаправить на страницу авторизации
-    //alert('Недостаточно привелегий')
-  }
-  return Promise.reject(error);
-});
+export const API: IAPI = {
+  createReport: (formData) => {
+    console.log(formData)
+    return instance.post("/threats/upload",
+      formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  getReport: (id) => instance.get(`/threats/${id}`)
+}
 
 export interface IocField {
   parametr: string; //Это всегда строка, будь то айпи, урл или что-то еще
@@ -94,5 +84,6 @@ export interface Threat {
   ioc: Ioc; // Иоки которые найденны в документе
   document: string;// вернет отформатированный тхт документ, не уверен надо ли это
   rating: string; // от 0 до 10
+  threadUID: string;
 }
 

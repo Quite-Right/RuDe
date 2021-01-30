@@ -4,7 +4,6 @@ import IocField from "../IocField/IocField";
 
 
 const Ioc = (props: IocProps) => {
-  console.log("IOC")
   return (
     <div>
       {Object.keys(props).map((
@@ -13,7 +12,7 @@ const Ioc = (props: IocProps) => {
         return <React.Fragment key={ioc}>
           {
             Array.from(props[ioc]).map(
-              (IocFieldProps, index) => <IocField {...IocFieldProps} key={index}/>
+              (IocFieldProps, index) => <IocField {...IocFieldProps} parametr={ioc} key={index}/>
             )
           }
         </React.Fragment>

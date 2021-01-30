@@ -1,2 +1,3 @@
-export const LOG_IN = "LOG_IN";
-export const LOG_OUT = "LOG_OUT";
+export const SHOW_NULLS = "SHOW_NULLS";
+
+export const HIDE_NULLS = "HIDE_NULLS";

@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
-import axios from "axios";
+import { API } from "../../api/"
+import axios from "axios"
 
 import Button from "../Button/Button";
 
 function InputFile() {
+  const history = useHistory();
   const [upload, setUpload] = useState<any | undefined>(undefined);
   const [drag, setDrag] = useState(false);
   const alert = useAlert();
@@ -37,20 +40,17 @@ function InputFile() {
       }
     }
     if (!hasError && upload) {
-      console.log(upload)
+      console.log(upload[0])
       const formData = new FormData();
-      Array.from(upload).forEach((file: any) => {
-        formData.append(file.name, file);
-      })
-      axios.post("http://localhost:5000/api/uploadfile", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then((response) => {
-        //handle success
+      formData.append("file", upload[0])
+      console.log(formData)
+      API.createReport(formData).then((response) => {
+        alert.success("Файл успешно отправлен")
+        history.push(`/report/${response.data.threadUID}`);
       }).catch((error) => {
-        //handle error
+        alert.error("Ошибка при отправке файла")
       });
+      
     }
   }
 
