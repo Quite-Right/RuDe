@@ -5,8 +5,8 @@ interface Props {
 
 const NotFound = (props: Props) => {
     return (
-        <div className="not-found unselectable">
-            <div className="not-found__wrapper">
+        <div className="not-found">
+            <div className="not-found__wrapper  unselectable">
                 <div className="not-found__wrapper__inner">
                 <label className="not-found__wrapper__inner__label-404">404</label>
                 <label className="not-found__wrapper__inner__label-main">Страница не найдена</label>

@@ -1,5 +1,8 @@
 import CloseIcon from './Close'
 import ErrorIcon from './ErrorIcon'
+import InfoIcon from './InfoIcon'
+import SuccessIcon from './SuccessIcon'
+
 
 // interface optionsType{
 //   position: string,
@@ -42,6 +45,8 @@ const AlertTemplate = ({ style, options, message, close }:any ) => {
 
   return(
     <div style={{ ...alertStyle, ...style }}>
+      {options.type === 'info' && <InfoIcon />}
+      {options.type === 'success' && <SuccessIcon />}
       {options.type === 'error' && <ErrorIcon />}
       {message}
       <button style={buttonStyle} onClick={close}><CloseIcon /></button>
