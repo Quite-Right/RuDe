@@ -21,7 +21,7 @@ function InputFile() {
     setDrag(false)
   }
 
-  function onDropHandler(e:any) {
+  function onDropHandler(e: any) {
     e.preventDefault()
     let files = [...e.dataTransfer.files]
     setDrag(false)
@@ -30,35 +30,27 @@ function InputFile() {
 
   function handleUpload() {
     let hasError;
-    for (let i:number = 0; i < upload.length; i++){
+    for (let i: number = 0; i < upload.length; i++) {
       hasError = validateInput(upload[i])
-      if(hasError){
+      if (hasError) {
         break;
       }
     }
-    if (!hasError) {
-      // const formData = new FormData();
-      // formData.append("upload", upload[0], upload[0].name)
+    if (!hasError && upload) {
       console.log(upload)
-      // axios
-      //   .post(`http://localhost:3000/sosi`, formData, { headers: {'Content-Type': undefined} })
-      //   .then(res => {
-      //     console.log(res.data)
-      //   })
-      // Array.from(upload).forEach( (file:any) => {
-      //   data.append(file.name, file);
-      // })
-      // axios.post(`some/data`, formdata, {
-      //   headers: {
-      //     'accept': 'application/json',
-      //     'Accept-Language': 'en-US,en;q=0.8',
-      //   }
-      // })
-      //   .then((response) => {
-      //     //handle success
-      //   }).catch((error) => {
-      //     //handle error
-      //   });
+      const formData = new FormData();
+      Array.from(upload).forEach((file: any) => {
+        formData.append(file.name, file);
+      })
+      axios.post("http://localhost:5000/api/uploadfile", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        //handle success
+      }).catch((error) => {
+        //handle error
+      });
     }
   }
 
@@ -78,55 +70,55 @@ function InputFile() {
   return (
     <div className="input">
 
-        <div className="input__content">
-          {upload ?
-            //Файл заружен
-            <div className="loaded">
-              <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
-              {
-                Array.from(upload).map( (item:any, key) => {
-                  return  <div key={key} className="loaded__name">{item.name}</div> 
-                } )
-              }
+      <div className="input__content">
+        {upload ?
+          //Файл заружен
+          <div className="loaded">
+            <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
+            {
+              Array.from(upload).map((item: any, key) => {
+                return <div key={key} className="loaded__name">{item.name}</div>
+              })
+            }
+          </div>
+          : drag
+            //Дрoп файла
+            ?
+            <div
+              onDragStart={e => dragStartHandler(e)}
+              onDragLeave={e => dragLeaveHandler(e)}
+              onDragOver={e => dragStartHandler(e)}
+              onDrop={e => onDropHandler(e)}
+              className="waiting-drop">
+              <Download className="waiting__icon" />
+              <div className="waiting__label-main">Отпустите файл</div>
             </div>
-            : drag
-              //Дрoп файла
-              ?
-              <div
-                onDragStart={e => dragStartHandler(e)}
-                onDragLeave={e => dragLeaveHandler(e)}
-                onDragOver={e => dragStartHandler(e)}
-                onDrop={e => onDropHandler(e)}
-                className="waiting-drop">
-                <Download className="waiting__icon" />
-                <div className="waiting__label-main">Отпустите файл</div>
+            //oснoвнoй  
+            :
+            <div
+              onDragStart={e => dragStartHandler(e)}
+              onDragLeave={e => dragLeaveHandler(e)}
+              onDragOver={e => dragStartHandler(e)}
+              className="waiting">
+              <Download className="waiting__icon" />
+              <label className="waiting__label-main">Перенесите файл</label>
+              <div className="waiting__sub-text">
+                <label className="waiting__label-sub">или</label>
+                <label htmlFor="file" className="waiting__label-link">выберите файл</label>
               </div>
-              //oснoвнoй  
-              :
-              <div
-                onDragStart={e => dragStartHandler(e)}
-                onDragLeave={e => dragLeaveHandler(e)}
-                onDragOver={e => dragStartHandler(e)}
-                className="waiting">
-                <Download className="waiting__icon" />
-                <label className="waiting__label-main">Перенесите файл</label>
-                <div className="waiting__sub-text">
-                  <label className="waiting__label-sub">или</label>
-                  <label htmlFor="file" className="waiting__label-link">выберите файл</label>
-                </div>
 
-              </div>}
+            </div>}
 
       </div>
-      
+
       {!upload ?
         <input type="file" id="file" name="file" multiple className="display-none" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          if (e && e.target && e.target.files ) {
+          if (e && e.target && e.target.files) {
             setUpload(e.target.files);
           }
         }} />
         : ""}
-        <Button className="report-submit-btn" type="submit" onClick={(e) => handleUpload()} disabled={upload ? false : true}>Сформировать отчет</Button>
+      <Button className="report-submit-btn" type="submit" onClick={(e) => handleUpload()} disabled={upload ? false : true}>Сформировать отчет</Button>
     </div>
   )
 }
