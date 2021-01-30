@@ -1,39 +1,46 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormik } from 'formik';
 
-import Tag from "../Tag/Tag";
+
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
 import Button from "../Button/Button";
 import Status from "../Status/Status";
 import RadioInput from "../RadioInput/RadioInput";
 
-const data = [
-  {
-    type: "type 1",
-    thread: "thread 1",
-    source: "source 1"
-  },
-  {
-    type: "type 2",
-    thread: "thread 2",
-    source: "source 2"
-  },
-  {
-    type: "type 3",
-    thread: "thread 3",
-    source: "source 3"
-  },
-  {
-    type: "type 4",
-    thread: "thread 4",
-    source: "source 4"
-  }
-]
 
 interface IParams {
   id: string;
+}
+
+const data = {   
+  "Name": "name",
+  "CVE": "cve",
+  "CWE": "cwe",
+  "SOFTWARE": "software",
+  "MALWARE": "malware",
+  "THREAT_ACTOR": "threat actor",
+  "INDUSTRY": "industry",
+  "MITRE_ATTACK": "mitre attack",
+  "COUNTRY": "country",
+  "CITY": "city",
+  "TIMESTAMP": "timestamp",
+  "IOC": {
+      "ipv4": "ipv4",
+      "ipv6": "ipv6",
+      "domain": "domain",
+      "url": "url",
+      "registry_key": "registry key",
+      "file_path": "file path",
+      "md5": "md5",
+      "sha1": "sha1",
+      "sha256": "sha256",
+      "sha512": "sha512",
+      "ssdeep": "ssdeep",
+      "email": "email"
+  },
+  "DOCUMENT": "document",
+  "RATING": "rating"
 }
 
 const Report = () => {
@@ -55,46 +62,46 @@ const Report = () => {
       <table className="table">
         <tbody>
           <TableRow rowKey={"Name"} tooltip={"https://nvd.nist.gov/vuln"}>
-            <div>123</div>
+            <div>{data.Name}</div>
           </TableRow>
           <TableRow rowKey={"CVE"} tooltip={"https://nvd.nist.gov/vuln"}>
-            <div>123</div>
+            <div>{data.CVE}</div>
           </TableRow>
           <TableRow rowKey={"CWE"} tooltip={"https://cwe.mitre.org"}>
-            <div>123</div>
+            <div>{data.CWE}</div>
           </TableRow>
           <TableRow rowKey={"SOFTWARE"} tooltip={"https://nvd.nist.gov/products/cpe"}>
-            <div>123</div>
+            <div>{data.SOFTWARE}</div>
           </TableRow>
           <TableRow rowKey={"MALWARE"} tooltip={"https://malpedia.caad.fkie.fraunhofer.de/families"}>
-            <div>123</div>
+            <div>{data.MALWARE}</div>
           </TableRow>
           <TableRow rowKey={"THREAT_ACTOR"} tooltip={"https://malpedia.caad.fkie.fraunhofer.de/actors"}>
-            <div>123</div>
+            <div>{data.THREAT_ACTOR}</div>
           </TableRow>
           <TableRow rowKey={"INDUSTRY"} tooltip={"https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_oogrswk3onck"}>
-            <div>123</div>
+            <div>{data.INDUSTRY}</div>
           </TableRow>
           <TableRow rowKey={"MITRE_ATTACK"} tooltip={"https://attack.mitre.org"}>
-            <div>123</div>
+            <div>{data.MITRE_ATTACK}</div>
           </TableRow>
           <TableRow rowKey={"COUNTRY"}>
-            <div>123</div>
+            <div>{data.COUNTRY}</div>
           </TableRow>
           <TableRow rowKey={"CITY"}>
-            <div>123</div>
+            <div>{data.CITY}</div>
           </TableRow>
           <TableRow rowKey={"TIMESTAMP"}>
-            <div>123</div>
+            <div>{data.TIMESTAMP}</div>
           </TableRow>
           <TableRow rowKey={"IOC"}>
             <div>123</div>
           </TableRow>
           <TableRow rowKey={"DOCUMENT"}>
-            <div>123</div>
+            <div>{data.DOCUMENT}</div>
           </TableRow>
           <TableRow rowKey={"RATING"}>
-            <div>123</div>
+            <div>{data.RATING}</div>
           </TableRow>
         </tbody>
 
