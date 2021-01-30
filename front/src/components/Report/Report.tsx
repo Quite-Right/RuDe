@@ -8,7 +8,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { RootState } from "../../redux/reducers/rootReducer";
 import { Threat } from "../../api"
 import { API } from "../../api/"
-import {showNulls, hideNulls} from "../../redux/actions";
+import { showNulls, hideNulls } from "../../redux/actions";
 
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
@@ -18,6 +18,8 @@ import RadioInput from "../RadioInput/RadioInput";
 import ThreatField from "../ThreatField/ThreatField";
 import Ioc from "../Ioc/Ioc";
 import Malware from "../Malware/Malware";
+
+import CheckBoxInput from "../CheckBoxInput/CheckBoxInput";
 
 interface IParams {
   id: string;
@@ -98,7 +100,7 @@ const Report = () => {
     else {
       dispatch(hideNulls());
     }
-    
+
     return () => {
       mounted = false;
     }
@@ -118,7 +120,12 @@ const Report = () => {
           }
         })} />
       </div>
-      <input type="checkbox" onChange={formik.handleChange("checked")} checked={formik.values.checked}/>
+      <CheckBoxInput
+        checked={formik.values.checked}
+        onChange={formik.handleChange("checked")}
+        inputId="checked"
+        label="Показывать пустые строки в таблице"
+      />
       {requestState.data && <table className="table">
         <tbody>
           {
