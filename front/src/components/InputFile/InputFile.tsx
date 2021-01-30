@@ -76,7 +76,7 @@ function InputFile() {
   }
 
   return (
-    <div className="input">
+    <div className="input unselectable">
 
         <div className="input__content">
           {upload ?

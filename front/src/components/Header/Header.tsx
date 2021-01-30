@@ -7,7 +7,7 @@ interface Props {
 
 const Header = (props: Props) => {
   return (
-    <header className="header">
+    <header className="header unselectable">
       <Link to="/" className="brand">
         RuDe <span className="brand-app-name">SecurityTinder</span>
       </Link>
