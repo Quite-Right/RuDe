@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useAlert } from "react-alert";
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
@@ -19,15 +19,21 @@ function InputFile() {
     setDrag(false)
   }
 
-  function onDropHandler(e: React.DragEvent<HTMLDivElement>) {
+  function onDropHandler(e:any) {
     e.preventDefault()
-    let file = e.dataTransfer.files[0]
+    let files = [...e.dataTransfer.files]
     setDrag(false)
-    setUpload(file)
+    setUpload(files)
   }
 
   function handleUpload() {
-    const hasError = validateInput(upload)
+    let hasError;
+    for (let i:number = 0; i < upload.length; i++){
+      hasError = validateInput(upload[i])
+      if(hasError){
+        break;
+      }
+    }
     if (!hasError) {
       console.log(upload)
     }
@@ -54,9 +60,11 @@ function InputFile() {
             //Файл заружен
             <div className="loaded">
               <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
-              <div className="loaded__name">
-                {upload.name}
-              </div>
+              {
+                Array.from(upload).map( (item:any) => {
+                  return  <div className="loaded__name">{item.name}</div> 
+                } )
+              }
             </div>
             : drag
               //Дрoп файла
@@ -89,9 +97,9 @@ function InputFile() {
       </div>
       
       {!upload ?
-        <input type="file" id="file" name="file" className="display-none" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          if (e && e.target && e.target.files && e.target.files[0]) {
-            setUpload(e.target.files[0]);
+        <input type="file" id="file" name="file" multiple className="display-none" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          if (e && e.target && e.target.files ) {
+            setUpload(e.target.files);
           }
         }} />
         : ""}
