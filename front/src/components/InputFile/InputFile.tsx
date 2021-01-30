@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useAlert } from "react-alert";
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
+import axios from "axios";
+
 import Button from "../Button/Button";
 
 function InputFile() {
@@ -35,7 +37,28 @@ function InputFile() {
       }
     }
     if (!hasError) {
+      // const formData = new FormData();
+      // formData.append("upload", upload[0], upload[0].name)
       console.log(upload)
+      // axios
+      //   .post(`http://localhost:3000/sosi`, formData, { headers: {'Content-Type': undefined} })
+      //   .then(res => {
+      //     console.log(res.data)
+      //   })
+      // Array.from(upload).forEach( (file:any) => {
+      //   data.append(file.name, file);
+      // })
+      // axios.post(`some/data`, formdata, {
+      //   headers: {
+      //     'accept': 'application/json',
+      //     'Accept-Language': 'en-US,en;q=0.8',
+      //   }
+      // })
+      //   .then((response) => {
+      //     //handle success
+      //   }).catch((error) => {
+      //     //handle error
+      //   });
     }
   }
 
@@ -61,8 +84,8 @@ function InputFile() {
             <div className="loaded">
               <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
               {
-                Array.from(upload).map( (item:any) => {
-                  return  <div className="loaded__name">{item.name}</div> 
+                Array.from(upload).map( (item:any, key) => {
+                  return  <div key={key} className="loaded__name">{item.name}</div> 
                 } )
               }
             </div>
