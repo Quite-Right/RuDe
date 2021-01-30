@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState } from "react"
+import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
 import { useFormik } from 'formik';
+import { Copy } from "@styled-icons/boxicons-regular";
+import CopyToClipboard from 'react-copy-to-clipboard';
+
 
 import Tag from "../Tag/Tag";
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
 import Button from "../Button/Button";
-import Status from "../Status/Status";
+import Status, { StatusData } from "../Status/Status";
 import RadioInput from "../RadioInput/RadioInput";
+
 
 const data = [
   {
@@ -38,20 +43,31 @@ interface IParams {
 
 const Report = () => {
   const { id } = useParams<IParams>();
+  const alert = useAlert();
   const formik = useFormik({
     initialValues: {
       comment: "",
       checkStatus: "Need Check"
     },
     onSubmit: (values: any) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(JSON.stringify(values, null, 2));
     },
   });
-  // const [comment, setComment] = useState<string>("")
+
+  const [similarReports, setSimilarReports] = useState<Array<string>>(["95ccc286-62f5-11eb-ae93-0242ac130002", "c616dfe4-62f5-11eb-ae93-0242ac130002"]);
+
   return (
     <div className="report">
-      <div className="report__id">Отчет #{id}</div>
-      <div className="report__id">Похожие отчеты</div>
+      <div className="report__id">Отчет #{id}   <CopyToClipboard text={window.location.href}
+        onCopy={() => alert.show("Ссылка на отчет успешно скопирована")}>
+        <Copy className="report__id-copy-btn" size="35" />
+      </CopyToClipboard></div>
+      <div className="reports__similar-label">Похожие отчеты</div>
+      <div className="reports__similar">
+        <Status data={similarReports.map(similarReport => {return {
+          label: similarReport,
+        }})} />
+      </div>
       <table className="table">
         <tbody>
           <TableRow rowKey={"Name"} tooltip={"https://nvd.nist.gov/vuln"}>

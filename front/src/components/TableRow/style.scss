@@ -9,12 +9,16 @@
   &:last-child {
     border-bottom: none;
   }
+  display: flex;
   &__key {
     font-size: 30px;
     display: flex;
     align-items: center;
     height: 60px;
     margin-left: 24px;
+    width: 20%;
+    min-width: 250px;
+    flex-shrink: 0;
     &-info {
       display: flex;
       width: 24px;
@@ -28,5 +32,11 @@
     }
   }
   &__value {
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .table-row {
+  flex-direction: column;
   }
 }

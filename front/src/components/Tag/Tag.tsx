@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 type tagType = "blue" | "yellow" | "orange" | "green"| "red"| "default" ;
 
-interface Props {
+export interface Props {
     type?: tagType,
     link?: string,
-    onClick?: any,
+    onClick?: ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | undefined,
     children: React.ReactNode
 }
 

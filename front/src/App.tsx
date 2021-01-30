@@ -30,15 +30,14 @@ const options: any = {
 function App() {
   return (
     // <Provider store={store}>
+    <Provider template={AlertTemplate}  {...options}>
     <Router>
       <div className="app">
         <Header />
         <main className="main">
           <Switch>
             <Route path="/" exact>
-              <Provider template={AlertTemplate}  {...options}>
                 <InputFile />
-              </Provider>
             </Route>
             <Route path="/report/:id">
               <Report />
@@ -52,6 +51,7 @@ function App() {
 
       </div>
     </Router>
+    </Provider>
     // </Provider>
   );
 }

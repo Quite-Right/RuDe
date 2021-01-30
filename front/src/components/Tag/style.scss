@@ -2,7 +2,6 @@
     height: 24px;
     display: block;
     width: fit-content;
-    max-width: 150px;
     padding: 3px 7px 3px 5px;
     border: 1px solid black;
     border-radius: 15px;
@@ -11,6 +10,10 @@
     text-overflow: ellipsis;
     text-align: center;
     color: white;
+    margin-right: 8px;
+    &:last-of-type {
+      margin-right: 0;
+    }
     &_blue{
         background: $tag-blue;
     }

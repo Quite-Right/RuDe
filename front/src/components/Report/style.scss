@@ -5,6 +5,32 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  &__id {
+    margin-bottom: 24px;
+    font-size: 40px;
+    color: $white;
+    &-copy-btn {
+      color: $purple;
+      cursor: pointer;
+      &:hover {
+        color: $light-purple;
+      }
+      &:active {
+        color: $purple;
+      }
+    }
+  }
+}
+
+.reports__similar {
+  display: flex;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  &-label {
+    margin-bottom: 12px;
+    font-size: 24px;
+    color: $white;
+  }
 }
 
 .table {
@@ -16,7 +42,7 @@
 .comment-field {
   max-width: 800px;
   width: 90%;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .report-submit-btn {
   max-width: fit-content;
