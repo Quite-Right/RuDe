@@ -5,14 +5,14 @@ interface props {
 }
 
 const color: any = {
-    received: "#004dff",
-    awaiting: "#fece02",
-    undergoing: "#f38207",
-    analyzed: "#077f32",
+    received: "blue",
+    awaiting: "yellow",
+    undergoing: "orange",
+    analyzed: "green",
     modified: "white",
-    deferred: "#c9d1d9",
-    rejected: "#dc0000",
-    default: "#79c0ff"
+    deferred: "gray",
+    rejected: "red",
+    default: "lightblue"
 }
 
 // color.key = className

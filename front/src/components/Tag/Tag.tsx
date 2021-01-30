@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 
-type tagType = "blue" | "green" | "white" | "orange";
-// received: "#004dff",
-// awaiting: "#fece02",
-// undergoing: "#f38207",
-// analyzed: "#077f32",
-// modified: "white",
-// deferred: "#c9d1d9",
-// rejected: "#dc0000",
-// default: "#79c0ff"
+type tagType = "blue" | "yellow" | "orange" | "green"| "white"| "gray"| "red"| "lightblue" ;
+
 interface Props {
     type?: tagType,
     link?: string,

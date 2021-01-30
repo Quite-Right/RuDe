@@ -12,6 +12,27 @@
     text-align: center;
     color: black;
     &_blue{
-        background: #004dff;
+        background: $tag-blue;
+    }
+    &_yellow{
+        background: $tag-yellow;
+    }
+    &_orange{
+        background: $tag-orange;
+    }
+    &_green{
+        background: $tag-green;
+    }
+    &_white{
+        background: $tag-white;
+    }
+    &_gray{
+        background: $tag-gray;
+    }
+    &_red{
+        background: $tag-red;
+    }
+    &_lightblue{
+        background: $tag-lightblue;
     }
 }
