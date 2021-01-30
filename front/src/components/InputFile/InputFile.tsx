@@ -48,43 +48,46 @@ function InputFile() {
 
   return (
     <div className="input unselectable">
-      <div className="input__content">
-        {upload ?
-          //Файл заружен
-          <div className="loaded">
-            <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
-            <div className="loaded__name">
-              {upload.name}
-            </div>
-          </div>
-          : drag
-            //Дрoп файла
-            ?
-            <div
-              onDragStart={e => dragStartHandler(e)}
-              onDragLeave={e => dragLeaveHandler(e)}
-              onDragOver={e => dragStartHandler(e)}
-              onDrop={e => onDropHandler(e)}
-              className="waiting-drop">
-              <Download className="waiting__icon" />
-              <div className="waiting__label-main">Отпустите файл</div>
-            </div>
-            //oснoвнoй  
-            :
-            <div
-              onDragStart={e => dragStartHandler(e)}
-              onDragLeave={e => dragLeaveHandler(e)}
-              onDragOver={e => dragStartHandler(e)}
-              className="waiting">
-              <Download className="waiting__icon" />
-              <label className="waiting__label-main">Перенесите файл</label>
-              <div className="waiting__sub-text">
-                <label className="waiting__label-sub">или</label>
-                <label htmlFor="file" className="waiting__label-link">выберите файл</label>
-              </div>
 
-            </div>}
+        <div className="input__content">
+          {upload ?
+            //Файл заружен
+            <div className="loaded">
+              <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
+              <div className="loaded__name">
+                {upload.name}
+              </div>
+            </div>
+            : drag
+              //Дрoп файла
+              ?
+              <div
+                onDragStart={e => dragStartHandler(e)}
+                onDragLeave={e => dragLeaveHandler(e)}
+                onDragOver={e => dragStartHandler(e)}
+                onDrop={e => onDropHandler(e)}
+                className="waiting-drop">
+                <Download className="waiting__icon" />
+                <div className="waiting__label-main">Отпустите файл</div>
+              </div>
+              //oснoвнoй  
+              :
+              <div
+                onDragStart={e => dragStartHandler(e)}
+                onDragLeave={e => dragLeaveHandler(e)}
+                onDragOver={e => dragStartHandler(e)}
+                className="waiting">
+                <Download className="waiting__icon" />
+                <label className="waiting__label-main">Перенесите файл</label>
+                <div className="waiting__sub-text">
+                  <label className="waiting__label-sub">или</label>
+                  <label htmlFor="file" className="waiting__label-link">выберите файл</label>
+                </div>
+
+              </div>}
+
       </div>
+      
       {!upload ?
         <input type="file" id="file" name="file" className="display-none" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           if (e && e.target && e.target.files && e.target.files[0]) {
