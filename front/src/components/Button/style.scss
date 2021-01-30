@@ -5,18 +5,6 @@
   border: none;
   color: $white;
   font-size: 20px;
-  &_blue {
-    background-color: aqua;
-    
-    &:hover {
-      background-color: aqua;
-      color: $white;
-    }
-    &:active {
-      background-color: aqua;
-      color: $white;
-    }
-  }
   &_purple {
     background-color: #553098;
     color: $white;
@@ -30,33 +18,8 @@
     }
    
   }
-  &_green {
-    background-color: aqua;
-    color: $white;
-    &:hover {
-      background-color: aqua;
-      color: $white;
-    }
-    &:active {
-      background-color: aqua;
-      color: $white;
-    }
-  }
-  &_red {
-    background-color: aqua;
-    color: $white;
-    &:hover {
-      background-color: aqua;
-      color: $white;
-    }
-    &:active {
-      background-color: aqua;
-      color: $white;
-    }
-  }
   &:disabled {
-    color: $white;
-    background-color: $disabled-grey;
-    border: 1px solid $white;
+    color: $black;
+    background-color: $disabled-gray;
   }
 }

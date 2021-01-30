@@ -3,21 +3,19 @@ import { useAlert } from "react-alert";
 import styled from 'styled-components';
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
+import Button from "../Button/Button";
 
-const WhiteDownload = styled(Download)`
-  color: white;
-`
+// const WhiteDownload = styled(Download)`
+//   color: white;
+// `
 
-const WhiteClose = styled(Close)`
-  color: white;
-`
+// const WhiteClose = styled(Close)`
+//   color: white;
+// `
 
 function InputFile() {
   const [upload, setUpload] = useState<any | undefined>(undefined);
-  const ref = useRef();
   const [drag, setDrag] = useState(false);
-  //const [hasError, setHasError] = useState(false);
-  const [errorName, setErrorName] = useState("");
   const alert = useAlert();
 
   function dragStartHandler(e: React.DragEvent<HTMLDivElement>) {
@@ -33,7 +31,6 @@ function InputFile() {
   function onDropHandler(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault()
     let file = e.dataTransfer.files[0]
-    validateInput(file)
     setDrag(false)
     setUpload(file)
   }
@@ -48,18 +45,12 @@ function InputFile() {
   function validateInput(e: any) {
     let split = e.name.split(".");
     if (split[split.length - 1] !== "txt") {
-      //setErrorName("Wrong file format");
-      alert.error("Wrong file format")
-      //setHasError(true);
+      alert.error("Неправильный формат, выберите файл.txt")
       return true;
     } else if (e.size > 1024 * 1024 * 10) {
-      //setErrorName("File size larger than 10Mb");
-      alert.error("File size larger than 10Mb")
-      //setHasError(true);
+      alert.error("Размер файла превышает 10Mb")
       return true;
     } else {
-      // setHasError(false);
-      // setErrorName("");
       return false;
     }
   }
@@ -70,7 +61,7 @@ function InputFile() {
         {upload ?
           //Файл заружен
           <div className="loaded">
-            <WhiteClose onClick={() => setUpload(undefined)} className="loaded__cancel" />
+            <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
             <div className="loaded__name">
               {upload.name}
             </div>
@@ -84,21 +75,21 @@ function InputFile() {
               onDragOver={e => dragStartHandler(e)}
               onDrop={e => onDropHandler(e)}
               className="waiting-drop">
-              <WhiteDownload className="waiting__icon" />
-              <label className="waiting__label-main">Drop to upload</label>
+              <Download className="waiting__icon" />
+              <div className="waiting__label-main">Отпустите файл</div>
             </div>
-            //oснoвнoй
+            //oснoвнoй  
             :
             <div
               onDragStart={e => dragStartHandler(e)}
               onDragLeave={e => dragLeaveHandler(e)}
               onDragOver={e => dragStartHandler(e)}
               className="waiting">
-              <WhiteDownload className="waiting__icon" />
-              <label className="waiting__label-main">Drag file here</label>
+              <Download className="waiting__icon" />
+              <label className="waiting__label-main">Перенесите файл</label>
               <div className="waiting__sub-text">
-                <label className="waiting__label-sub">Or </label>
-                <label htmlFor="file" className="waiting__label-link"> choose a file</label>
+                <label className="waiting__label-sub">или</label>
+                <label htmlFor="file" className="waiting__label-link">выберите файл</label>
               </div>
 
             </div>}
@@ -110,7 +101,7 @@ function InputFile() {
           }
         }} />
         : ""}
-      <button className="input__upload" onClick={(e) => handleUpload()} disabled={upload ? false : true}>Upload</button>
+        <Button className="report-submit-btn" type="submit" onClick={(e) => handleUpload()} disabled={upload ? false : true}>Сформировать отчет</Button>
     </div>
   )
 }
