@@ -40,7 +40,7 @@ const Report = () => {
     initialValues: {
       comment: ""
     },
-    onSubmit: values => {
+    onSubmit: (values: any) => {
       alert(JSON.stringify(values, null, 2));
     },
   });

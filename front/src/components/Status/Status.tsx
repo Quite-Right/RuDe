@@ -15,6 +15,8 @@ const color: any = {
     default: "#79c0ff"
 }
 
+// color.key = className
+
 // {cve: received, 123:asdasd}
 // const data:Array<string> =["asdasdasda", "asdadasdds"]
 // const newData:string = "asdasdasd"

@@ -1,7 +1,16 @@
 import { useState, useRef } from 'react';
 import { useAlert } from "react-alert";
+import styled from 'styled-components';
 import { Download } from "@styled-icons/bootstrap";
 import { Close } from "@styled-icons/ionicons-sharp";
+
+const WhiteDownload = styled(Download)`
+  color: white;
+`
+
+const WhiteClose = styled(Close)`
+  color: white;
+`
 
 function InputFile() {
   const [upload, setUpload] = useState<any | undefined>(undefined);
@@ -61,7 +70,7 @@ function InputFile() {
         {upload ?
           //Файл заружен
           <div className="loaded">
-            <Close onClick={() => setUpload(undefined)} className="loaded__cancel" />
+            <WhiteClose onClick={() => setUpload(undefined)} className="loaded__cancel" />
             <div className="loaded__name">
               {upload.name}
             </div>
@@ -75,7 +84,7 @@ function InputFile() {
               onDragOver={e => dragStartHandler(e)}
               onDrop={e => onDropHandler(e)}
               className="waiting-drop">
-              <Download className="waiting__icon" />
+              <WhiteDownload className="waiting__icon" />
               <label className="waiting__label-main">Drop to upload</label>
             </div>
             //oснoвнoй
@@ -85,7 +94,7 @@ function InputFile() {
               onDragLeave={e => dragLeaveHandler(e)}
               onDragOver={e => dragStartHandler(e)}
               className="waiting">
-              <Download className="waiting__icon" />
+              <WhiteDownload className="waiting__icon" />
               <label className="waiting__label-main">Drag file here</label>
               <div className="waiting__sub-text">
                 <label className="waiting__label-sub">Or </label>

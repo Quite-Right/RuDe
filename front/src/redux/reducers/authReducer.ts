@@ -4,7 +4,7 @@ const initialState = {
 
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: { type: any; payload: any; }) => {
   switch (action.type) {
     case LOG_IN: {
       return {
