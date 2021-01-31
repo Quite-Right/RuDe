@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Copy } from "@styled-icons/boxicons-regular";
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { RootState } from "../../redux/reducers/rootReducer";
-import { Threat } from "../../api"
-import { API } from "../../api/"
+import { API, Threat, ThreatStatus } from "../../api/"
 import { showNulls, hideNulls } from "../../redux/actions";
+
 
 import TableRow from "../TableRow/TableRow";
 import TextField from "../TextField/TextField";
@@ -41,10 +41,12 @@ const Report = () => {
     initialValues: {
       checked: showEmptyFields,
       comment: "",
-      checkStatus: "Need Check"
+      checkStatus: ThreatStatus.PENDING,
     },
     onSubmit: (values: any) => {
-      console.log(JSON.stringify(values, null, 2));
+      // console.log(JSON.stringify(values, null, 2));
+      if (formik.values.checkStatus)
+        API.changeReportStatusAndComment(id, formik.values.checkStatus, formik.values.comment)
     },
   });
   console.log(formik.values.checked)
@@ -108,8 +110,8 @@ const Report = () => {
 
   return (
     <div className="report">
-      <div className="report__id">Отчет {requestState.data && requestState.data.name} #{id}   <CopyToClipboard text={window.location.href}
-        onCopy={() => alert.show("Ссылка на отчет успешно скопирована")}>
+      <div className="report__id">Отчет #{id}   <CopyToClipboard text={window.location.href}
+        onCopy={() => alert.info("Ссылка на отчет успешно скопирована")}>
         <Copy className="report__id-copy-btn" size="35" />
       </CopyToClipboard></div>
       <div className="reports__similar-label">Похожие отчеты</div>
@@ -126,7 +128,13 @@ const Report = () => {
         inputId="checked"
         label="Показывать пустые строки в таблице"
       />
-      {requestState.data && <table className="table">
+      {
+        requestState.isLoading && <div className="report-loading-status">Данные об отчете загружаются, пожалуйста подождите...</div>
+      }
+      {
+        requestState.error && <div className="report-error-status">Произошла ошибка</div>
+      }
+      {requestState.data && requestState.isLoading === false && !requestState.error && <><table className="table">
         <tbody>
           {
             requestState.data.name || showEmptyFields ? <TableRow rowKey={"Name"} tooltip={"https://nvd.nist.gov/vuln"}>
@@ -216,30 +224,31 @@ const Report = () => {
             <div>{String(data.RATING}</div>
           </TableRow> */}
         </tbody>
-      </table>}
-      <TextField className="comment-field" label="Оставить комментарий" value={formik.values.comment} onChange={formik.handleChange("comment")} />
-      <label className="report__result-label">Результат анализа отчета</label>
-      <div className="report__result">
-        <RadioInput inputId="no-threat"
-          name="threatStatus"
-          value="resolved"
-          label="Угроз не обнаружено"
-          checked={"resolved" === formik.values.checkStatus}
-          onChange={formik.handleChange("checkStatus")} />
-        <RadioInput inputId="threat"
-          name="threatStatus"
-          value="rejected"
-          label="Обнаружена угроза"
-          checked={"rejected" === formik.values.checkStatus}
-          onChange={formik.handleChange("checkStatus")} />
-        <RadioInput inputId="need-check"
-          name="threatStatus"
-          value="pending"
-          label="Нужна проверка"
-          checked={"pending" === formik.values.checkStatus}
-          onChange={formik.handleChange("checkStatus")} />
-      </div>
-      <Button className="report-submit-btn" type="submit" onClick={() => formik.handleSubmit()}>Отправить отчет</Button>
+      </table>
+        <TextField className="comment-field" label="Оставить комментарий" value={formik.values.comment} onChange={formik.handleChange("comment")} />
+        <label className="report__result-label">Результат анализа отчета</label>
+        <div className="report__result">
+          <RadioInput inputId="no-threat"
+            name="threatStatus"
+            value={ThreatStatus.REJECTED}
+            label="Угроз не обнаружено"
+            checked={ThreatStatus.REJECTED === formik.values.checkStatus}
+            onChange={formik.handleChange("checkStatus")} />
+          <RadioInput inputId="threat"
+            name="threatStatus"
+            value={ThreatStatus.APPROVED}
+            label="Обнаружена угроза"
+            checked={ThreatStatus.APPROVED === formik.values.checkStatus}
+            onChange={formik.handleChange("checkStatus")} />
+          <RadioInput inputId="need-check"
+            name="threatStatus"
+            value={ThreatStatus.PENDING}
+            label="Нужна проверка"
+            checked={ThreatStatus.PENDING === formik.values.checkStatus}
+            onChange={formik.handleChange("checkStatus")} />
+        </div>
+        <Button className="report-submit-btn" type="submit" onClick={() => formik.handleSubmit()}>Отправить отчет</Button>
+      </>}
     </div>
   )
 }

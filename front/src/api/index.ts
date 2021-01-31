@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 const config: AxiosRequestConfig = {
-  baseURL: 'http://91.248.75.251:3001',
+  baseURL: 'http://90.153.37.24:3001',
   timeout: 10000,
 }
 
@@ -15,9 +15,16 @@ interface ICreateReport {
   data: Threat;
 }
 
+interface IChangeReportStatusAndComment {
+
+}
+
+type StatusType = "APPROVED" | "REJECTED" | "PENDING"
+
 interface IAPI {
   getReport: (id: string) => Promise<IGetReport>;
   createReport: (formdata: FormData) => Promise<ICreateReport>;
+  changeReportStatusAndComment: (id: string, status: ThreatStatus, comment: string) => Promise<IChangeReportStatusAndComment>
 }
 
 
@@ -31,7 +38,12 @@ export const API: IAPI = {
       }
     })
   },
-  getReport: (id) => instance.get(`/threats/${id}`)
+  getReport: (id) => instance.get(`/threats/${id}`),
+  changeReportStatusAndComment: (id, status, comment) => instance.patch(`/${id}/status`, {
+    status: status,
+    id: id,
+    comment: comment,
+  })
 }
 
 export interface IocField {
@@ -70,9 +82,10 @@ export interface Ioc {
 }
 
 export interface Threat {
+  threadUID: string;
   name: string; //Прост строка парсится из названия или первой строки файла
   cve: ThreatFiled[]; // Всей найденные све (чаще всего будет только 1)
-  cwe: ThreatFiled[]; // Все найденые све 
+  cwe: ThreatFiled[]; // Все найденые све
   software: Malware[]; // Все зараженные софты (не факт что сможем отличать вредоносов от софтвейр)
   malware: Malware[]; // Все вредоносы и инфа по ним
   threatActor: ThreatFiled[]; // Киберпреступные групировки и ссылки на параграфы где их имена встречались
@@ -82,8 +95,14 @@ export interface Threat {
   city: ThreatFiled[]; // Города (опционально)
   timeStamp: ThreatFiled[]; // Тут сложнее, но как минимум будет список дат и параграфы где они указаны
   ioc: Ioc; // Иоки которые найденны в документе
-  document: string;// вернет отформатированный тхт документ, не уверен надо ли это
+  document: string; // вернет отформатированный тхт документ, не уверен надо ли это
   rating: string; // от 0 до 10
-  threadUID: string;
+  comment: string;
+}
+
+export enum ThreatStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
 }
 
