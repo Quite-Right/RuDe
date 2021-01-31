@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAlert } from "react-alert";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from "react-redux";
 import { Copy } from "@styled-icons/boxicons-regular";
@@ -20,6 +20,7 @@ import Ioc from "../Ioc/Ioc";
 import Malware from "../Malware/Malware";
 
 import CheckBoxInput from "../CheckBoxInput/CheckBoxInput";
+import { response } from "express";
 
 interface IParams {
   id: string;
@@ -34,6 +35,7 @@ interface IRequest {
 
 const Report = () => {
   const { id } = useParams<IParams>();
+  const history = useHistory();
   const alert = useAlert();
   const showEmptyFields = useSelector((store: RootState) => store.selectors.showNulls);
   console.log(showEmptyFields)
@@ -44,9 +46,13 @@ const Report = () => {
       checkStatus: ThreatStatus.PENDING,
     },
     onSubmit: (values: any) => {
-      // console.log(JSON.stringify(values, null, 2));
-      if (formik.values.checkStatus)
-        API.changeReportStatusAndComment(id, formik.values.checkStatus, formik.values.comment)
+      if (formik.values.checkStatus && id)
+        API.changeReportStatusAndComment(id, formik.values.checkStatus, formik.values.comment).then(response => {
+          alert.success("Ваша оценка по отчету успешно сохранена");
+          history.push("/");
+        }).catch(error => {
+          alert.error("При отправке запроса произошла ошибка");
+        })
     },
   });
   console.log(formik.values.checked)
